@@ -1,8 +1,7 @@
 package stepanyan.konstantin.lab_8_15.rewriteWords;
 import stepanyan.konstantin.lab_8_15.CreateFile;
 
-import java.io.*;
-import java.util.Scanner;
+import java.io.*; import java.util.Scanner;
 
 public class RewriteWords {
     public static void main(String[] args) throws IOException {
