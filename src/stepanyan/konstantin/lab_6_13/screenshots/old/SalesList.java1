@@ -1,0 +1,73 @@
+package stepanyan.konstantin.lab_6_13;
+import java.util.*;
+
+/*
+ * Реализовать класс для хранения списка товаров с методом добавления нового
+товара и методом печати списка товаров:
+ */
+class SalesList extends OnlineStore{
+    protected String storeName;
+    private List<Sales> salesList;
+
+    public SalesList(String name) {
+        super(name);
+        this.salesList = new ArrayList<>();}
+
+    public SalesList(String name, List<Sales> salesList) {
+        super(name);
+        this.salesList = salesList;}
+
+    public void addSales(Sales sale) { salesList.add(sale);}
+
+    public Sales[] getSaleslistByDate() {
+        // Создаем копию списка продаж для сортировки
+        List<Sales> sortedList = new ArrayList<>(salesList);
+
+        // Сортируем список продаж по дате
+        Collections.sort(sortedList, new Comparator<Sales>() {
+            @Override
+            public int compare(Sales sales1, Sales sales2) {
+                return sales1.getSaleDate().compareTo(sales2.getSaleDate());
+            }
+        });
+
+        // Преобразуем отсортированный список в массив продаж
+        Sales[] sortedArray = sortedList.toArray(new Sales[0]);
+
+        return sortedArray;
+    }     
+
+    public void loopThroughSales(List<Sales> sales){
+        for (int i = 0; i < sales.size(); i++) {
+            Product product = sales.get(i);
+            int c = i+1;
+            product.printDetails(c);
+        }
+    }
+
+    public void printSalesList(String order) {
+
+        switch (order){
+            case "По дате прибытия:":
+
+            // Преобразование массива в список
+            List<Sales> salesByDate_list = Arrays.asList(getSaleslistByDate());
+
+            loopThroughSales(salesByDate_list);
+            break;
+
+            default:
+            loopThroughSales(salesList);
+            break;
+        }
+    }
+    
+    public int size(){
+        return this.salesList.size();
+    }
+
+    
+    public String getStoreName() {return storeName;}
+    public void setStoreName(String newStoreName) {this.storeName = newStoreName;}
+
+}
