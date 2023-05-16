@@ -5,27 +5,8 @@ import java.util.Scanner;
 
 public class SumPairs {
 
-    public static void createFile(File file) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Файл " + file + " не существует.");
-        System.out.println("Сколько элементов будет в " + file.getName() + "?");
-        int file_length = scanner.nextInt();
-        file.createNewFile();
-        BufferedWriter writer_input = new BufferedWriter(new FileWriter(file));
-
-        for (int i = 0; i < file_length; i++) {
-            int num = i + 1;
-            System.out.println("Введите " + num + "-й элемент:");
-            int elem = scanner.nextInt();
-            writer_input.write(Integer.toString(elem));
-            writer_input.newLine();
-        }
-        writer_input.close();
-    }
-
     public static void main(String[] args) {
-        String dir = "src/stepanyan/konstantin/lab_8_15/";
+        String dir = "src/stepanyan/konstantin/lab_8_15/sumPairs/";
         String inputFile1 = dir+"input1.txt";
         String inputFile2 = dir+"input2.txt";
         String outputFile = dir+"output.txt";
@@ -35,12 +16,12 @@ public class SumPairs {
              // Проверка наличия файлов и создание новых файлов при необходимости
              File file1 = new File(inputFile1);
              if (!file1.exists()) {
-                createFile(file1);
+               new CreateFile(file1);
              }
  
              File file2 = new File(inputFile2);
              if (!file2.exists()) {
-                 createFile(file2);
+                 new CreateFile(file2);
              }
 
              File file3 = new File(outputFile);
@@ -79,18 +60,18 @@ public class SumPairs {
             for (int i = 0; i < minCount; i++) {
                 reader3_count = reader3.readLine();
                 reader4_count = reader4.readLine();
-                int num1 = Integer.parseInt(reader3_count);
-                int num2 = Integer.parseInt(reader4_count);
-                int sum = num1 + num2;
+                double num1 = Double.valueOf(reader3_count);
+                double num2 = Double.valueOf(reader4_count);
+                double sum = num1 + num2;
                 //System.out.println("num1: " + num1 + "; num2: " + num2 + "; sum: "+sum);
-                writer.write(Integer.toString(sum));
+                writer.write(Double.toString(sum));
                 writer.newLine();
             }
             reader3.close();
             reader4.close();
 
             // Запись числа элементов из короткого файла
-            writer.write("Число элементов в коротком файле: "+Integer.toString(Math.min(reader1_count, reader2_count)));
+            writer.write("Число элементов в коротком файле: "+Double.toString(Math.min(reader1_count, reader2_count)));
             writer.newLine();
 
 
