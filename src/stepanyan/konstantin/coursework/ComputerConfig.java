@@ -1,7 +1,7 @@
 package stepanyan.konstantin.coursework;
 import java.util.Scanner;
 
-public class ComputerConfiguration {
+public class ComputerConfig {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -12,6 +12,7 @@ public class ComputerConfiguration {
         int ram = scanner.nextInt();
         scanner.nextLine();
 
+        // DDR3/4/5
         System.out.println("Введите тип оперативной памяти: ");
         String ramType = scanner.nextLine();
 
@@ -27,39 +28,14 @@ public class ComputerConfiguration {
 
         scanner.close();
 
-        // Создание экземпляра класса PC
-        PC myPC = new PC(cpu, ram, ramType, storage, operatingSystem, gpu);
-
-        // Вывод информации о конфигурации компьютера
+        // Output computer information
         System.out.println("______");
         System.out.println("Ваша конфигурация компьютера:");
-        myPC.printConfiguration();
-        System.out.println("______");
-    }
-}
-
-class PC {
-    private String cpu;
-    private int ram;
-    private String ramType;
-    private int storage;
-    private String operatingSystem;
-    private String gpu;
-
-    public PC(String cpu, int ram, String ramType, int storage, String operatingSystem, String gpu) {
-        this.cpu = cpu;
-        this.ram = ram;
-        this.ramType = ramType;
-        this.storage = storage;
-        this.operatingSystem = operatingSystem;
-        this.gpu = gpu;
-    }
-
-    public void printConfiguration() {
         System.out.println("CPU: " + cpu);
         System.out.println("RAM: " + ram + " ГБ " + ramType);
         System.out.println("Жёсткий диск: " + storage + " ГБ");
         System.out.println("ОС: " + operatingSystem);
         System.out.println("GPU: " + gpu);
+        System.out.println("______");
     }
 }
