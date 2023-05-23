@@ -35,21 +35,23 @@ public class Program {
         //Список продаж (проданных товаров) магазина №3 ↓
         SalesList sales_list_2 = new SalesList("Магазин №3");
         KitchenFurniture_sale kitchen_furniture_sale__store_2 = new KitchenFurniture_sale("Стул", "Германия",
-                                                                                          100.0, 200.0, 2, "Наличные", 98, "01.01.2023",
+                                                                                          200.0, 200.0, 2, "Наличные", 98, "01.01.2023",
                                                                                           "02.05.2023", 1, "Иванов Сергей", "Для кухни",
                                                                                           12, 13, 14);
-        BathroomFurniture_sale bathroom_furniture_sale__store_2 = new BathroomFurniture_sale("Стул", "Китай", 10.0, 15.0,
+        BathroomFurniture_sale bathroom_furniture_sale__store_2 = new BathroomFurniture_sale("Стул", "Китай", 150.0, 150.0,
                                                                                              10, "Перевод по карте", 10.0, "01.01.2022", "02.05.2022",
                                                                                              1, "Иванов Иван", "Для ванных комнат",
                                                                                              12, 13, 14);
         LivingRoomFurniture_sale living_room_furniture_sale__store_2 = new LivingRoomFurniture_sale("Шкаф", "Италия",
-                50, 55, 3, "Оплата по карте", 50, "05.07.2021", "09.09.2021",
+                500, 500, 3, "Оплата по карте", 500, "05.07.2021", "09.09.2021",
                 1, "Иванов Алексей", "Для гостинной", "Шкаф-купе",
                 12, 13, 14);
 
         sales_list_2.addSales(bathroom_furniture_sale__store_2);
         sales_list_2.addSales(kitchen_furniture_sale__store_2);
         sales_list_2.addSales(living_room_furniture_sale__store_2);
+
+        //sales_list_2.printCustomersList("По названию");
 
         //Список Товаров (проданных товаров) магазина №3 ↓
         ProductList products_list_2 = new ProductList("Магазин №3");
@@ -85,8 +87,6 @@ public class Program {
 
         stores[2].setProducts_list_of_store(products_list_2);
         stores[2].setSales_list_of_store(sales_list_2);
-        stores[2].setProducts_list_of_store(products_list_2);
-
         stores[2].setUtilizableProducts_list_of_store(utilize_list_2);
 
         Scanner scanner = new Scanner(System.in);
@@ -99,11 +99,14 @@ public class Program {
             System.out.println("2. Посмотреть товары в магазине");
             System.out.println("3. Посмотреть продажи (проданные товары) в магазине");
             System.out.println("4. Посмотреть список утилизируемых товаров в магазине");
+            System.out.println("5. Посмотреть список покупателей в магазине");
+            System.out.println("6. Посмотреть список стран-производителей");
             System.out.println("0. Выйти из меню");
 
             System.out.print("Введите ваш выбор: ");
             choice = scanner.nextInt();
             scanner.nextLine();
+            
 
             switch (choice) {
                 case 1:
@@ -155,6 +158,35 @@ public class Program {
                         System.out.println("Такого магазина не существует.");
                     break;
 
+               case 5:
+                    System.out.println("Введите название магазина:");
+                    String storeWithCustomers = scanner.nextLine();
+                    boolean storeWithCustomersFound = false;
+                    for (int i = 0; i < stores.length; i++) {
+                        if (stores[i] != null && storeWithCustomers.equals(stores[i].name)) {
+                            stores[i].printСustomers("По дате прибытия");
+                            storeWithCustomersFound = true;
+                            break;
+                        }
+                    }
+                    if (!storeWithCustomersFound)
+                        System.out.println("Такого магазина не существует.");
+                    break;
+
+                case 6:
+                    System.out.println("Введите название магазина:");
+                    String storeWithCountries = scanner.nextLine();
+                    boolean storeWithCountriesFound = false;
+                    for (int i = 0; i < stores.length; i++) {
+                        if (stores[i] != null && storeWithCountries.equals(stores[i].name)) {
+                            stores[i].printСountries("По дате прибытия");
+                            storeWithCountriesFound = true;
+                            break;
+                        }
+                    }
+                    if (!storeWithCountriesFound)
+                        System.out.println("Такого магазина не существует.");
+                    break;    
                     
                 case 0:
                     // выход из меню

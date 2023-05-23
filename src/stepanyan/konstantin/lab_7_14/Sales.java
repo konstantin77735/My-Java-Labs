@@ -115,5 +115,20 @@ class Sales extends Product {
         System.out.println("Покупатель: " + getCustomerName()+";");
         System.out.println("_____");
     }
+
+    public void printCustomers() {
+        System.out.println("Покупатель: " + getCustomerName()+";");
+        System.out.println("Купил: " + getQuantity()+" шт. товара: "+getName()+";");
+        System.out.println("Общей стоимостью: " + getRetailPrice()+" р;");
+        System.out.println("_____");
+    }
+
+    public void printCountries() {
+        System.out.println("Товар: "+getName()+";");
+        System.out.println("Страна-производитель: "+getCountryOfOrigin()+";");
+        System.out.println("Количество товара: "+getQuantity()+";");
+        System.out.println("_____");
+    }
+     
 }
 

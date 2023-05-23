@@ -87,13 +87,27 @@ public class OnlineStore {
 
     public void printSales(String order) {
         if(this.sales_list_of_store!=null && this.sales_list_of_store.size()!=0) {
-
-
             System.out.println("Список продаж (проданных товаров): "+"\n");
-            sales_list_of_store.printProductsList(order);
-
-            
+            sales_list_of_store.printProductsList(order);            
         } else {System.out.println("Список продаж (уже проданных товаров) пуст.");System.out.println("_____");}
+    }
+
+    public void printСustomers(String order) {
+        if(this.sales_list_of_store!=null && this.sales_list_of_store.size()!=0) {
+
+            System.out.println("Список покупателей: "+"\n");
+            sales_list_of_store.printCustomersList(order);
+
+        } else {System.out.println("Список покупателей пуст.");System.out.println("_____");}
+    }
+
+    public void printСountries(String order) {
+        if(this.sales_list_of_store!=null && this.sales_list_of_store.size()!=0) {
+
+            System.out.println("Список стран-производителей: "+"\n");
+            sales_list_of_store.printCountriesList(order);
+
+        } else {System.out.println("Список стран-производителей пуст.");System.out.println("_____");}
     }
 
     public void printProducts(String order) {
