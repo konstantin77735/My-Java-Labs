@@ -1,64 +1,91 @@
-Как легко конвертировать .java в .jar?
+## Как легко конвертировать .java в .jar?
 
-Сначала нужно конвертировать  (допустим: lab_1_8.java. Он содержит в себе класс lab_1_8)
+Сначала нужно конвертировать, допустим, ComputerConfiguration.java.
+Он содержит в себе два класса:
 
-нужно его конвертировать в байт-код (lab_1_8.class). Компиляция:
+1. public class ComputerConfiguration (это главный класс, потому что public)
+2. class PC (это не основной класс, но он используется в ComputerConfiguration) )
+
+Нужно конвертировать ComputerConfiguration.java в байт-код, т.е. в файл с расширение .class.
+
+Компиляция с учётом обратной совместимости с 1.8-версией Java ↓
 
 > ```java
-> javac lab_1_8.java
+> javac --release 8 ComputerConfiguration.java
 > ```
 
-> Ещё есть команда
+> Просто компиляция, без обратной совместимости ↓
 >
 > ```java
-> javac --release 8 *.java
+> javac ComputerConfiguration.java 
 > ```
->
-> Она создаёт .class совместимый с jre-8. но скоро эта команда также устареет, как и сама jre-8
 
-Можем запустить lab_1_8.class (запускает именно .class файл, а не .java) с помощью команды:
+---
+
+### *Мы может протестировать наши .class-файлы (необязательно)
+
+Можем запустить ComputerConfiguration.class (запускает именно .class файл, а не .java) с помощью команды:
 
 > ```java
-> java lab_1_8
+> java ComputerConfiguration
 > ```
 
-Далее нужно создать lab_1_8.jar.
+P.S. ***Если в*** Вашем** *проекте было несколько классов, то***, соответственно, ***будет создано несколько .class-файлов***.
+Значит в одном классе мог использоваться другой класс.
+***Поэтому при запуске .class-файлы*** в консоли ***с помощью команды java ComputerConfiguration программа может выдать ошибку.
+Это нормально.***
+Ваша задача: *из всех .class-файлов создать один .jar-файл, который потом будет конвертирован в .exe-файл.*
 
-Для этого сначала нужно создать файл MANIFEST.MF с текстом:
+---
+
+### Создадим .jar-файл
+
+Для этого нужно создать файл MANIFEST.MF (название капсом) с текстом:
 Manifest-Version: 1.0
-main-class: lab_1_8
-class-path: out/
+Main-Class: ComputerConfiguration
+class-path: ./
 
-Эта команда ↓ берёт все файлы из папки out и создаёт с ними архив lab_1_8.jar
+Main-Class: тот класс, который имеет модификатор доступа public. Такой будет только один
+class-path: это где находятся .class-файлы, ./ - текущая
+
+Эта команда ↓ берёт файлы ComputerConfiguration.class PC.class и создаётс с ними файл MyProgram.jar
 
 ```java
-jar -cmf MANIFEST.MF lab_1_8.jar -C out .
+jar cvfm MyProgram.jar MANIFEST.MF ComputerConfiguration.class PC.class
 ```
 
-lab_1_8.jar - это имя файла, который будет создан.
+---
 
-Запустить lab_1_8.jar из командной строки:
+### Протестируем .jar-файл на совместимость с jdk 1.8
 
-> ```java
-> java -jar lab_1_8.jar
-> ```
-
-java - это 20-ая версия java, а мне надо тестировать на 8 и ранее (и на 32бит версии), чтоб в ГМИ работало:
-
-
-java (jdk): build 8u372-b07 ↓
-
->
-> ```java
-> "C:\Program Files\Java\jdk-8u372-b07\bin\java.exe" -jar lab_1_8.jar
-> ```
-
-java (jdk): build 1.8
-
-
-
-java (jdk): build 1.8.0 ↓
+Запустим MyProgram.jar из командной строки с помощью java.exe из jdk1.8.0 (его нужно скачать):
 
 > ```java
 > "C:\Program Files (x86)\Java\jdk1.8.0\bin\java.exe" -jar lab_1_8.jar
 > ```
+
+Если всё работает, то можно конвертировать .jar в .exe-файл
+
+---
+
+### *Тесты для других версий (это необязательно)
+
+Для той версии, которая в Вашей системе по умолчанию прописана Path (обычно это одна из последних версий) ↓
+
+> ```java
+> java -jar MyProgram.jar 
+> ```
+
+java - это 20-ая версия java, а мне надо тестировать на 8 и ранее (и на 32бит версии), чтоб в ГМИ работало:
+
+Можем проверить для версии build 8u372-b07 (у меня она установлена) ↓
+
+java (jdk): build 8u372-b07 ↓
+
+> ```java
+> "C:\Program Files\Java\jdk-8u372-b07\bin\java.exe" -jar lab_1_8.jar
+> ```
+
+---
+
+lorem ipsum dolor sit amet
