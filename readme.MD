@@ -4,13 +4,15 @@
 
 ## Как легко конвертировать .java в .jar?
 
-Допустим, у нас есть файлComputerConfiguration.java.
+Допустим, у нас есть файл ComputerConfiguration.java.
 В нём описаны два класса:
 
 1. public class ComputerConfiguration (это главный класс, потому что public)
 2. class PC (это не основной класс, но он используется в ComputerConfiguration) )
 
 Нужно конвертировать ComputerConfiguration.java в байт-код, т.е. в файл с расширение .class.
+
+(лучше обрать из .java-файла/фалов строку типа: packagestepanyan.konstantin.lab_1_8, т.к. она создаёт путаницу при конвертации и запуске из .jar)
 
 Компиляция с учётом обратной совместимости с 1.8-версией Java ↓
 
