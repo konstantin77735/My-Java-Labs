@@ -1,7 +1,11 @@
+# Как конвертировать .java в .exe?
+
+Сначала нужно конвертировать .java в .jar ↓
+
 ## Как легко конвертировать .java в .jar?
 
-Сначала нужно конвертировать, допустим, ComputerConfiguration.java.
-Он содержит в себе два класса:
+Допустим, у нас есть файлComputerConfiguration.java.
+В нём описаны два класса:
 
 1. public class ComputerConfiguration (это главный класс, потому что public)
 2. class PC (это не основной класс, но он используется в ComputerConfiguration) )
